@@ -12,7 +12,7 @@ public protocol CollectionViewHolderProtocol {
 	var collectionView: UICollectionView { get }
 }
 
-public class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewController,
+open class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewController,
 																		UICollectionViewDataSource,
 																		UICollectionViewDelegate,
 																		UICollectionViewDelegateFlowLayout,
@@ -28,7 +28,7 @@ public class CollectionViewController<ViewType: CollectionViewHolderProtocol>: U
 		super.init(nibName: nil, bundle: nil)
 	}
 	
-	required init?(coder _: NSCoder) {
+    required public init?(coder _: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	

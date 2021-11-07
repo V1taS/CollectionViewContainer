@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class GenericCollectionViewCell<T: UIView>: UICollectionViewCell, ReusableView where T: GenericCellSubview {
+open class GenericCollectionViewCell<T: UIView>: UICollectionViewCell, ReusableView where T: GenericCellSubview {
 
 	// MARK: - Public variables
 	public let customSubview = T()

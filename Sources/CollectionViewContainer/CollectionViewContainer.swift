@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class CollectionViewContainer: CollectionViewDataSource, CollectionViewDataSourceContainerDelegate {
+public final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDataSourceContainerDelegate {
 
     // MARK: - Internal variables
     weak public var delegate: CollectionViewDataSourceContainerDelegate?

@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDataSourceContainerDelegate {
+public final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDataSourceContainerDelegate {
 
 	// MARK: - Internal variables
-	weak var delegate: CollectionViewDataSourceContainerDelegate?
+    weak public var delegate: CollectionViewDataSourceContainerDelegate?
 	let dataSources: [CollectionViewDataSource]
-	var numberOfSections: Int = .zero
-	var isEnabled = true
+    public var numberOfSections: Int = .zero
+    public var isEnabled = true
 
 	var internalCollectionView: UICollectionView? {
 		didSet {
@@ -24,13 +24,13 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		}
 	}
 
-	var cellsForRegistration: [AppCollectionViewCell.Type]? {
+    public var cellsForRegistration: [AppCollectionViewCell.Type]? {
 		return dataSources.reduce([]) { (result, dataSource) -> [AppCollectionViewCell.Type] in
 			result + (dataSource.cellsForRegistration ?? [])
 		}
 	}
 
-	var headersForRegistration: [AppCollectionReusableView.Type]? {
+    public var headersForRegistration: [AppCollectionReusableView.Type]? {
 		return dataSources.reduce([]) { (result, dataSource) -> [AppCollectionReusableView.Type] in
 			result + (dataSource.headersForRegistration ?? [])
 		}
@@ -48,11 +48,11 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 
 
 	// MARK: - Internal funcs
-	func getCollectionView() -> UICollectionView? {
+    public func getCollectionView() -> UICollectionView? {
 		return internalCollectionView
 	}
 
-	func getContainer() -> CollectionViewContainer {
+    public func getContainer() -> CollectionViewContainer {
 		return self
 	}
 
@@ -78,7 +78,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		}
 	}
 
-	func numberOfItems(inSection section: Int) -> Int {
+    public func numberOfItems(inSection section: Int) -> Int {
 		let pair = sections.first { (range, _) -> Bool in
 			range.contains(section)
 		}
@@ -92,7 +92,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		return currentDataSourcePair.value.numberOfItems(inSection: newSection)
 	}
 
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		let pair = sections.first { (range, _) -> Bool in
 			range.contains(indexPath.section)
 		}
@@ -106,7 +106,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		return currentDataSourcePair.value.collectionView(collectionView, cellForItemAt: newIndexPath)
 	}
 
-	func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 		let pair = sections.merging(previousSections) { _, previousDataSource in
 			previousDataSource
 		}
@@ -123,7 +123,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		currentDataSourcePair.value.collectionView(collectionView, didEndDisplaying: cell, forItemAt: newIndexPath)
 	}
 
-	func collectionView(
+    public func collectionView(
 		_ collectionView: UICollectionView,
 		viewForSupplementaryElementOfKind kind: String,
 		at indexPath: IndexPath
@@ -141,7 +141,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		return currentDataSourcePair.value.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: newIndexPath)
 	}
 
-	func collectionView(
+    public func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,
 		referenceSizeForHeaderInSection section: Int
@@ -163,7 +163,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		return currentDataSourcePair.value.collectionView(collectionView, layout: collectionViewLayout, referenceSizeForHeaderInSection: newSection)
 	}
 
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		let pair = sections.first { (range, _) -> Bool in
 			range.contains(indexPath.section)
 		}
@@ -177,7 +177,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		currentDataSourcePair.value.collectionView(collectionView, didSelectItemAt: newIndexPath)
 	}
 
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		let pair = sections.first { (range, _) -> Bool in
 			range.contains(indexPath.section)
 		}
@@ -191,7 +191,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		return currentDataSourcePair.value.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: newIndexPath)
 	}
 
-	func collectionView(
+    public func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,
 		minimumLineSpacingForSectionAt section: Int
@@ -208,7 +208,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		return currentDataSourcePair.value.collectionView(collectionView, layout: collectionViewLayout, minimumLineSpacingForSectionAt: newSection)
 	}
 
-	func collectionView(
+    public func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,
 		minimumInteritemSpacingForSectionAt section: Int
@@ -225,7 +225,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		return currentDataSourcePair.value.collectionView(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAt: newSection)
 	}
 
-	func collectionView(
+    public func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,
 		insetForSectionAt section: Int
@@ -242,7 +242,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		return currentDataSourcePair.value.collectionView(collectionView, layout: collectionViewLayout, insetForSectionAt: newSection)
 	}
 
-	func startSection(forDataSource: CollectionViewDataSource) -> Int {
+    public func startSection(forDataSource: CollectionViewDataSource) -> Int {
 		let pair = sections.first { (_, dataSource: CollectionViewDataSource) -> Bool in
 			dataSource === forDataSource
 		}
@@ -255,7 +255,7 @@ final class CollectionViewContainer: CollectionViewDataSource, CollectionViewDat
 		return currentDataSourcePair.key.lowerBound
 	}
 
-	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		dataSources.forEach {
 			$0.scrollViewDidScroll(scrollView)
 		}

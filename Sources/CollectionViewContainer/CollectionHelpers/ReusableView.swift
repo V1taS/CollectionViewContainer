@@ -24,8 +24,8 @@ public protocol ReusableView {
 }
 
 // MARK: - Default implementation
-extension ReusableView {
-	public static var reuseIdentifier: String {
+public extension ReusableView {
+    static var reuseIdentifier: String {
 		if let component = String(describing: self).split(separator: ".").last {
 			return String(component)
 		} else {
@@ -33,11 +33,11 @@ extension ReusableView {
 		}
 	}
 
-	public static var nib: UINib {
+    static var nib: UINib {
 		return UINib(nibName: reuseIdentifier, bundle: bundle)
 	}
 
-	public static var bundle: Bundle? {
+    static var bundle: Bundle? {
 		return nil
 	}
 }

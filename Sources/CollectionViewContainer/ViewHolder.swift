@@ -7,15 +7,15 @@
 
 import UIKit
 
-protocol ViewHolder {
+public protocol ViewHolder {
 	associatedtype ViewType
 	/// This variable returns a root view.
 	/// - Returns: A root `view`.
-	var rootView: ViewType { get }
+    var rootView: ViewType { get }
 }
 
-extension ViewHolder where Self: UIViewController {
-	var rootView: ViewType {
+public extension ViewHolder where Self: UIViewController {
+    var rootView: ViewType {
 		guard let view = view as? ViewType else {
 			fatalError("View type (\(type(of: view))) does not match with ViewType (\(ViewType.self))")
 		}

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol CollectionViewDataSourceContainerDelegate: AnyObject {
+public protocol CollectionViewDataSourceContainerDelegate: AnyObject {
 	/// This function returns the index of the section selected from the datasource.
 	///
 	/// ```
@@ -35,7 +35,7 @@ protocol CollectionViewDataSourceContainerDelegate: AnyObject {
 	func getContainer() -> CollectionViewContainer
 }
 
-protocol CollectionViewDataSource: AnyObject {
+public protocol CollectionViewDataSource: AnyObject {
 	/// The object that acts as the delegate of the collection view.
 	///
 	/// ```
@@ -205,7 +205,7 @@ protocol CollectionViewDataSource: AnyObject {
 }
 
 // MARK: - Default implementation
-extension CollectionViewDataSource {
+public extension CollectionViewDataSource {
 	var headersForRegistration: [AppCollectionReusableView.Type]? {
 		return []
 	}

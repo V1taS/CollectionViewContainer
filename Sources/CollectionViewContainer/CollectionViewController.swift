@@ -7,17 +7,17 @@
 
 import UIKit
 
-protocol CollectionViewHolderProtocol {
+public protocol CollectionViewHolderProtocol {
 	/// An object that manages an ordered collection of data items and presents them using customizable layouts.
 	var collectionView: UICollectionView { get }
 }
 
-class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewController,
+public class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewController,
 																		UICollectionViewDataSource,
 																		UICollectionViewDelegate,
 																		UICollectionViewDelegateFlowLayout,
 																		ViewHolder {
-	typealias ViewType = ViewType
+    public typealias ViewType = ViewType
 	
 	// MARK: - Internal variables
 	var container: CollectionViewContainer
@@ -33,17 +33,17 @@ class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewCo
 	}
 	
 	// MARK: - Internal funcs
-	override func viewDidLoad() {
+    public override func viewDidLoad() {
 		super.viewDidLoad()
 		setup()
 	}
 	
-	override func viewDidDisappear(_ animated: Bool) {
+    public override func viewDidDisappear(_ animated: Bool) {
 		super.viewDidDisappear(animated)
 		rootView.collectionView.refreshControl?.endRefreshing()
 	}
 	
-	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		container.scrollViewDidScroll(scrollView)
 	}
 	
@@ -61,7 +61,7 @@ class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewCo
 	}
 	
 	// MARK: - UICollectionViewDelegateFlowLayout
-	func collectionView(
+    public func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,
 		referenceSizeForHeaderInSection section: Int
@@ -69,11 +69,11 @@ class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewCo
 		return container.collectionView(collectionView, layout: collectionViewLayout, referenceSizeForHeaderInSection: section)
 	}
 	
-	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		return container.collectionView(collectionView, layout: collectionViewLayout, sizeForItemAt: indexPath)
 	}
 	
-	func collectionView(
+    public func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,
 		minimumLineSpacingForSectionAt section: Int
@@ -81,7 +81,7 @@ class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewCo
 		container.collectionView(collectionView, layout: collectionViewLayout, minimumLineSpacingForSectionAt: section)
 	}
 	
-	func collectionView(
+    public func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,
 		minimumInteritemSpacingForSectionAt section: Int
@@ -89,7 +89,7 @@ class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewCo
 		container.collectionView(collectionView, layout: collectionViewLayout, minimumInteritemSpacingForSectionAt: section)
 	}
 	
-	func collectionView(
+    public func collectionView(
 		_ collectionView: UICollectionView,
 		layout collectionViewLayout: UICollectionViewLayout,
 		insetForSectionAt section: Int
@@ -98,15 +98,15 @@ class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewCo
 	}
 	
 	// MARK: - UICollectionViewDelegate
-	func numberOfSections(in collectionView: UICollectionView) -> Int {
+    public func numberOfSections(in collectionView: UICollectionView) -> Int {
 		container.numberOfSections
 	}
 	
-	func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 		container.collectionView(collectionView, didEndDisplaying: cell, forItemAt: indexPath)
 	}
 	
-	func collectionView(
+    public func collectionView(
 		_ collectionView: UICollectionView,
 		viewForSupplementaryElementOfKind kind: String,
 		at indexPath: IndexPath
@@ -114,16 +114,16 @@ class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIViewCo
 		return container.collectionView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
 	}
 	
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		container.collectionView(collectionView, didSelectItemAt: indexPath)
 	}
 	
 	// MARK: - UICollectionViewDataSource
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		container.numberOfItems(inSection: section)
 	}
 	
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		return container.collectionView(collectionView, cellForItemAt: indexPath)
 	}
 }

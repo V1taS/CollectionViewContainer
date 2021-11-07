@@ -7,24 +7,24 @@
 
 import UIKit
 
-extension UICollectionView {
-	public func registerReusableCellWithNib<T: AppCollectionViewCell>(_ cellType: T.Type) {
+public extension UICollectionView {
+    func registerReusableCellWithNib<T: AppCollectionViewCell>(_ cellType: T.Type) {
 		register(cellType.nib, forCellWithReuseIdentifier: cellType.reuseIdentifier)
 	}
 
-	public func registerReusableCellWithClass<T: AppCollectionViewCell>(_ cellType: T.Type) {
+    func registerReusableCellWithClass<T: AppCollectionViewCell>(_ cellType: T.Type) {
 		register(cellType, forCellWithReuseIdentifier: cellType.reuseIdentifier)
 	}
 
-	public func registerAnonimusReusableCellWithClass(_ anonimusCellType: AppCollectionViewCell.Type) {
+    func registerAnonimusReusableCellWithClass(_ anonimusCellType: AppCollectionViewCell.Type) {
 		register(anonimusCellType, forCellWithReuseIdentifier: anonimusCellType.reuseIdentifier)
 	}
 
-	public func dequeueReusableCellWithType<T: AppCollectionViewCell>(_ viewType: T.Type, indexPath: IndexPath) -> T {
+    func dequeueReusableCellWithType<T: AppCollectionViewCell>(_ viewType: T.Type, indexPath: IndexPath) -> T {
 		return dequeueReusableCell(withReuseIdentifier: viewType.reuseIdentifier, for: indexPath) as! T
 	}
 
-	public func registerHeaderViewWithClass<T: AppCollectionReusableView>(_ viewType: T.Type) {
+    func registerHeaderViewWithClass<T: AppCollectionReusableView>(_ viewType: T.Type) {
 		self.register(
 			viewType,
 			forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -32,7 +32,7 @@ extension UICollectionView {
 		)
 	}
 
-	public func registerAnonimusHeaderViewWithClass(_ anonimusHeaderType: AppCollectionReusableView.Type) {
+    func registerAnonimusHeaderViewWithClass(_ anonimusHeaderType: AppCollectionReusableView.Type) {
 		self.register(
 			anonimusHeaderType,
 			forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -40,7 +40,7 @@ extension UICollectionView {
 		)
 	}
 
-	public func dequeueHeaderViewWithClass<T: AppCollectionReusableView>(_ viewType: T.Type, forIndexPath indexPath: IndexPath) -> T {
+    func dequeueHeaderViewWithClass<T: AppCollectionReusableView>(_ viewType: T.Type, forIndexPath indexPath: IndexPath) -> T {
 		return self.dequeueReusableSupplementaryView(
 			ofKind: UICollectionView.elementKindSectionHeader,
 			withReuseIdentifier: viewType.reuseIdentifier,

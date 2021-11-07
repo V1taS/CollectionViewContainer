@@ -34,7 +34,7 @@ public protocol GenericCellSubview {
 }
 
 // MARK: - Default implementation
-extension GenericCellSubview {
-	public func setSelected(_ selected: Bool, animated: Bool) {}
-	public func setHighlighted(_ highlighted: Bool, animated: Bool) {}
+public extension GenericCellSubview {
+    func setSelected(_ selected: Bool, animated: Bool) {}
+    func setHighlighted(_ highlighted: Bool, animated: Bool) {}
 }

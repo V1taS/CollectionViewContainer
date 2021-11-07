@@ -273,7 +273,7 @@ public extension CollectionViewDataSource {
 		return startSection
 	}
 	
-	func reloadCurrentSectionIfLoaded() {
+    func reloadCurrentSectionIfLoaded() {
 		guard isEnabled else {
 			return
 		}

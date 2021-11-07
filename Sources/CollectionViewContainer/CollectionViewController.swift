@@ -19,8 +19,8 @@ open class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIV
 																		ViewHolder {
     public typealias ViewType = ViewType
 	
-	// MARK: - Internal variables
-	var container: CollectionViewContainer
+	// MARK: - Public variables
+	public var container: CollectionViewContainer
 	
 	// MARK: - Initialization
 	init(container: CollectionViewContainer) {

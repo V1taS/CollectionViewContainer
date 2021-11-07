@@ -56,7 +56,7 @@ public final class CollectionViewContainer: CollectionViewDataSource, Collection
 		return self
 	}
 
-	func reload(shouldReloadCollection: Bool) {
+    public func reload(shouldReloadCollection: Bool) {
 		var currentSection: Int = .zero
 		previousSections = sections
 		sections = [:]

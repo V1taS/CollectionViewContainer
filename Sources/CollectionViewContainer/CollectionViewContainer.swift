@@ -41,7 +41,7 @@ public final class CollectionViewContainer: CollectionViewDataSource, Collection
 	private var previousSections: [Range<Int>: CollectionViewDataSource] = [:]
 
 	// MARK: - Initialization
-	init(dataSources: [CollectionViewDataSource]) {
+    public init(dataSources: [CollectionViewDataSource]) {
 		self.dataSources = dataSources
 		reload(shouldReloadCollection: false)
 	}

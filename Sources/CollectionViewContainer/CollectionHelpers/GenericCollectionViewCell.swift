@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Combine
 
 public final class GenericCollectionViewCell<T: UIView>: UICollectionViewCell, ReusableView where T: GenericCellSubview {
 
@@ -18,9 +17,6 @@ public final class GenericCollectionViewCell<T: UIView>: UICollectionViewCell, R
 			customSubview.setSelected(isSelected, animated: false)
 		}
 	}
-
-	// MARK: - Internal variables
-	var cancellable = Set<AnyCancellable>()
 
 	// MARK: - Initialization
 	public init() {
@@ -41,7 +37,6 @@ public final class GenericCollectionViewCell<T: UIView>: UICollectionViewCell, R
 	// MARK: - Public func
 	override public func prepareForReuse() {
 		super.prepareForReuse()
-		cancellable.forEach({ $0.cancel() })
 		reusableComponent?.reuse()
 
 		if let reuseView = customSubview as? ReusableComponent {

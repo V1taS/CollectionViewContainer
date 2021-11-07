@@ -33,12 +33,12 @@ open class CollectionViewController<ViewType: CollectionViewHolderProtocol>: UIV
     }
 
     // MARK: - Internal funcs
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
 
-    public override func viewDidDisappear(_ animated: Bool) {
+    open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         rootView.collectionView.refreshControl?.endRefreshing()
     }
